@@ -1,6 +1,7 @@
 package ro.pub.cs.systems.eim.practicaltest01var07
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -19,6 +20,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var random: Button
 
+    private lateinit var set: Button
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         stg_jos = findViewById(R.id.c10)
         dr_jos = findViewById(R.id.c11)
         random = findViewById<Button>(R.id.random)
+        set = findViewById<Button>(R.id.set)
 
         random.setOnClickListener {
             if(stg_sus.text.toString().isEmpty() || !isNumeric(stg_sus.text.toString())){
@@ -57,6 +61,17 @@ class MainActivity : AppCompatActivity() {
                 val result = (1..10).random()
                 dr_sus.setText(result.toString())
             }
+
+        }
+
+        set.setOnClickListener {
+            val intent = Intent(this, PracticalTest01Var07SecondaryActivity::class.java)
+            intent.putExtra("c00", stg_sus.text.toString())
+            intent.putExtra("c01", dr_sus.text.toString())
+            intent.putExtra("c10", stg_jos.text.toString())
+            intent.putExtra("c11", dr_jos.text.toString())
+            startActivity(intent)
+
 
         }
 
